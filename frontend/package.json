@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gradio/client": "^2.8.0",
     "hls.js": "^1.7.3",
     "katex": "^0.19.1",
     "prop-types": "^15.8.1",

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
+import { Client } from "@gradio/client";
 import "./MovieRecommender.css";
 
 export interface Movie {
@@ -213,8 +214,17 @@ function LatexFormula({ math, display = false, className = "" }: LatexFormulaPro
 }
 
 const API_BASE: string = (
-  (import.meta as any).env?.VITE_API_URL || "http://127.0.0.1:8000"
+  (import.meta as any).env?.VITE_API_URL || "sovon19/room75-api"
 ).replace(/\/$/, "");
+
+let gradioClientPromise: Promise<any> | null = null;
+function getGradioClient() {
+  if (!gradioClientPromise) {
+    const spaceId = API_BASE.includes("/") && !API_BASE.startsWith("http") ? API_BASE : "sovon19/room75-api";
+    gradioClientPromise = Client.connect(spaceId);
+  }
+  return gradioClientPromise;
+}
 
 function MovieRecommender() {
   const [mode, setMode] = useState<SearchMode>("vibe");
@@ -245,10 +255,19 @@ function MovieRecommender() {
 
   const fetchPopularMovies = async (): Promise<void> => {
     try {
-      const res = await fetch(`${API_BASE}/api/popular?limit=6`);
-      if (!res.ok) throw new Error("Network error");
-      const data: Movie[] = await res.json();
-      setMovies(data);
+      if (API_BASE.startsWith("http://127.0.0.1") || API_BASE.startsWith("http://localhost")) {
+        const res = await fetch(`${API_BASE}/api/popular?limit=6`);
+        if (!res.ok) throw new Error("Network error");
+        const data: Movie[] = await res.json();
+        setMovies(data);
+      } else {
+        const client = await getGradioClient();
+        const res = await client.predict("/recommend", ["Avatar", "Exact Title"]);
+        const data: Movie[] = res.data[1];
+        if (Array.isArray(data) && data.length > 0) {
+          setMovies(data);
+        }
+      }
       setHeadline("Top Latent Manifold Seeds");
       setTopResonanceScore(0.89);
       setGeodesicAngleDeg(27.1);
@@ -279,11 +298,13 @@ function MovieRecommender() {
     setLoading(true);
 
     try {
-      if (targetMode === "title") {
-        const res = await fetch(`${API_BASE}/api/recommend`, {
+      if (API_BASE.startsWith("http://127.0.0.1") || API_BASE.startsWith("http://localhost")) {
+        const endpoint = targetMode === "title" ? "/api/recommend" : "/api/search";
+        const body = targetMode === "title" ? { title: targetQuery, top_n: 6 } : { query: targetQuery, top_n: 6 };
+        const res = await fetch(`${API_BASE}${endpoint}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ title: targetQuery, top_n: 6 }),
+          body: JSON.stringify(body),
         });
 
         if (!res.ok) {
@@ -292,37 +313,32 @@ function MovieRecommender() {
           return;
         }
 
-        const data: RecommendResponse = await res.json();
-        setMovies(data.recommendations);
-        setHeadline(`Ethereal Projections for: "${data.query_movie}"`);
-        if (data.recommendations.length > 0 && data.recommendations[0].match_percentage) {
-          const resonance = data.recommendations[0].match_percentage / 100;
-          setTopResonanceScore(resonance);
+        const data = await res.json();
+        const resultsList: Movie[] = targetMode === "title" ? data.recommendations : data.results;
+        setMovies(resultsList);
+        setHeadline(targetMode === "title" ? `Ethereal Projections for: "${data.query_movie}"` : `Subconscious Topology for: "${targetQuery.slice(0, 48)}..."`);
+        if (resultsList.length > 0 && resultsList[0].match_percentage) {
+          setTopResonanceScore(resultsList[0].match_percentage / 100);
         }
       } else {
-        const res = await fetch(`${API_BASE}/api/search`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query: targetQuery, top_n: 6 }),
-        });
-
-        if (!res.ok) {
-          const errData: ErrorDetail = await res.json();
-          alert(errData.detail || "Vector projection failed. Adjust query!");
-          return;
-        }
-
-        const data: SearchResponse = await res.json();
-        setMovies(data.results);
-        setHeadline(`Subconscious Topology for: "${data.search_query.slice(0, 48)}..."`);
-        if (data.results.length > 0 && data.results[0].match_percentage) {
-          const resonance = data.results[0].match_percentage / 100;
-          setTopResonanceScore(resonance);
+        // Connect to Hugging Face ZeroGPU Vector Engine
+        const client = await getGradioClient();
+        const modeLabel = targetMode === "title" ? "Exact Title" : "Subconscious Vibe";
+        const res = await client.predict("/recommend", [targetQuery, modeLabel]);
+        const resultsList: Movie[] = res.data[1];
+        if (Array.isArray(resultsList) && resultsList.length > 0) {
+          setMovies(resultsList);
+          setHeadline(targetMode === "title" ? `Ethereal Projections for: "${targetQuery}"` : `Subconscious Topology for: "${targetQuery.slice(0, 48)}..."`);
+          if (resultsList[0].match_percentage) {
+            setTopResonanceScore(resultsList[0].match_percentage / 100);
+          }
+        } else {
+          alert(`Vector coordinates not resolved for "${targetQuery}". Try another prompt!`);
         }
       }
     } catch (err) {
       console.error("Search error:", err);
-      alert(`Backend apparatus unreachable on ${API_BASE}. Ensure the vector API is running.`);
+      alert("Vector engine apparatus unreachable. Check connection to Hugging Face Spaces.");
     } finally {
       setLoading(false);
     }
