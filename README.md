@@ -15,6 +15,12 @@
   <b>Find films by the feeling they leave behind. Search 4,800+ cinema titles across a 10,000-dimensional Hilbert space $\mathcal{H} = \ell^2(\mathbb{R}^{10,000})$ using TF-IDF projection and cosine geodesics.</b>
 </p>
 
+<p align="center">
+  <a href="https://huggingface.co/spaces/sovon19/room75-api"><b>🤗 Hugging Face Space</b></a> •
+  <a href="https://sovon19-room75-api.hf.space/docs"><b>⚡ Interactive Swagger API Docs</b></a> •
+  <a href="https://sovon19-room75-api.hf.space"><b>🌌 Live Vector Engine</b></a>
+</p>
+
 ---
 
 ## 🏛 System Architecture
