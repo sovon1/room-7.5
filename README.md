@@ -1,14 +1,17 @@
 # <p align="center">ROOM 7.5 — High-Dimensional Latent Vector Cinema Engine</p>
 
 <p align="center">
+  <a href="https://room-7-5.vercel.app/"><img src="https://img.shields.io/badge/Live_Demo-room--7--5.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" /></a>
+  <a href="https://huggingface.co/spaces/sovon19/room75-api"><img src="https://img.shields.io/badge/HuggingFace-ZeroGPU_Online-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" /></a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
   <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/Vite-8.3-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/HuggingFace-Spaces_24%2F7-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" />
-  <img src="https://img.shields.io/badge/Vercel-Edge_CDN-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Scikit--Learn-1.3-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" />
+  <img src="https://img.shields.io/badge/NVIDIA-A10G_24GB-76B900?style=for-the-badge&logo=nvidia&logoColor=white" />
 </p>
 
 <p align="center">
@@ -16,9 +19,9 @@
 </p>
 
 <p align="center">
-  <a href="https://huggingface.co/spaces/sovon19/room75-api"><b>🤗 Hugging Face Space</b></a> •
-  <a href="https://sovon19-room75-api.hf.space/docs"><b>⚡ Interactive Swagger API Docs</b></a> •
-  <a href="https://sovon19-room75-api.hf.space"><b>🌌 Live Vector Engine</b></a>
+  <a href="https://room-7-5.vercel.app/"><b>🎬 Live Web Experience</b></a> •
+  <a href="https://huggingface.co/spaces/sovon19/room75-api"><b>🤗 Hugging Face ZeroGPU Space</b></a> •
+  <a href="https://github.com/sovon1/room-7.5"><b>💻 GitHub Source</b></a>
 </p>
 
 ---
@@ -27,7 +30,7 @@
 
 The system utilizes an asynchronous decoupled architecture:
 1. **Frontend Edge:** React 19 + TypeScript + Vite deployed on **Vercel Global Edge CDN** (0ms cold start, sub-millisecond static asset delivery).
-2. **Vector Backend:** High-throughput Python FastAPI machine learning engine deployed on **Hugging Face Spaces** (2 vCPU, 16 GB RAM, 24/7 always-on container).
+2. **Vector Backend:** High-throughput machine learning engine deployed on **Hugging Face Spaces** (NVIDIA A10G 24GB Tensor Core ZeroGPU, 24/7 always-on container).
 3. **Poster Ingestion:** Intelligent asynchronous TMDB poster caching with local JSON store.
 
 ```mermaid
