@@ -208,7 +208,7 @@ def gradio_search(query_text, mode):
     except Exception as e:
         return f"Error: {str(e)}"
 
-with gr.Blocks(title="ROOM 7.5 API", theme=gr.themes.Soft()) as demo:
+with gr.Blocks(title="ROOM 7.5 API") as demo:
     gr.Markdown("# 🎬 ROOM 7.5 — High-Dimensional Latent Vector Cinema Engine")
     gr.Markdown("FastAPI Machine Learning vector service powering the Vercel frontend. Test queries directly below or visit `/docs` for the interactive OpenAPI Swagger documentation.")
     with gr.Row():
@@ -222,5 +222,15 @@ with gr.Blocks(title="ROOM 7.5 API", theme=gr.themes.Soft()) as demo:
 app = gr.mount_gradio_app(app, demo, path="/")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 7860))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    # Hugging Face sets GRADIO_SERVER_PORT on ZeroGPU proxies
+    primary_port = int(os.environ.get("GRADIO_SERVER_PORT") or os.environ.get("PORT") or 7860)
+    print(f"🚀 [Startup] Launching server on primary port {primary_port}...")
+    try:
+        uvicorn.run(app, host="0.0.0.0", port=primary_port)
+    except OSError as e:
+        if getattr(e, "errno", None) == 98 or "already in use" in str(e).lower():
+            alt_port = 7861 if primary_port == 7860 else 7860
+            print(f"⚠️ Port {primary_port} already in use. Retrying on alternative port {alt_port}...")
+            uvicorn.run(app, host="0.0.0.0", port=alt_port)
+        else:
+            raise
