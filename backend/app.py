@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import gradio as gr
 import uvicorn
 
 # 1. Initialize FastAPI App
@@ -27,11 +28,12 @@ app.add_middleware(
 )
 
 # 3. Locate & Load Dataset
+base_dir = os.path.dirname(__file__)
 DATA_CANDIDATES = [
     "data/tmdb_5000_movies.csv",
     "tmdb_5000_movies.csv",
-    os.path.join(os.path.dirname(__file__), "data", "tmdb_5000_movies.csv"),
-    os.path.join(os.path.dirname(__file__), "tmdb_5000_movies.csv"),
+    os.path.join(base_dir, "data", "tmdb_5000_movies.csv"),
+    os.path.join(base_dir, "tmdb_5000_movies.csv"),
 ]
 
 data_path = None
@@ -65,7 +67,6 @@ print("🚀 [Startup] Vector Matrix Ready!")
 
 # 4. TMDB Poster Caching Layer
 TMDB_API_KEY = "a9f5613530bc07f20a0af74ba259bb50"
-base_dir = os.path.dirname(__file__)
 data_dir = os.path.join(base_dir, "data")
 CACHE_PATH = os.path.join(data_dir, "poster_cache.json") if os.path.isdir(data_dir) else os.path.join(base_dir, "poster_cache.json")
 
@@ -128,21 +129,7 @@ def format_movie(idx, match_score=None):
         "match_percentage": round(float(match_score * 100), 1) if match_score is not None else None
     }
 
-# --- ROUTES ---
-
-@app.get("/")
-def root():
-    return {
-        "status": "online",
-        "service": "ROOM 7.5 Cinema Vector Engine API",
-        "documentation": "/docs",
-        "endpoints": {
-            "health": "/health",
-            "popular": "/api/popular?limit=6",
-            "recommend": "POST /api/recommend",
-            "search": "POST /api/search"
-        }
-    }
+# --- FASTAPI REST API ROUTES ---
 
 @app.get("/health")
 def health_check():
@@ -196,6 +183,44 @@ def search_by_vibe(req: SearchRequest):
         "results": [format_movie(i, scores[i]) for i in top_indices]
     }
 
+# --- GRADIO EMBEDDED DEMO UI ---
+def gradio_search(query_text, mode):
+    if not query_text or not query_text.strip():
+        return "Please enter a valid movie title or descriptive mood/vibe query."
+    try:
+        if mode == "Exact Title":
+            res = recommend_by_title(RecommendRequest(title=query_text, top_n=5))
+            films = res["recommendations"]
+            header = f"### 🎬 Projections for: {res['query_movie']}\n\n"
+        else:
+            res = search_by_vibe(SearchRequest(query=query_text, top_n=5))
+            films = res["results"]
+            header = f"### 🌌 Subconscious Topology for: \"{query_text}\"\n\n"
+        
+        md = header
+        for f in films:
+            score = f.get('match_percentage')
+            score_str = f"**{score}% Resonance**" if score else ""
+            genres = " • ".join(f.get('genres', []))
+            md += f"#### {f['title']} ({f['rating']} ★) {score_str}\n"
+            md += f"*{genres}*\n\n{f['overview']}\n\n---\n"
+        return md
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+with gr.Blocks(title="ROOM 7.5 API", theme=gr.themes.Soft()) as demo:
+    gr.Markdown("# 🎬 ROOM 7.5 — High-Dimensional Latent Vector Cinema Engine")
+    gr.Markdown("FastAPI Machine Learning vector service powering the Vercel frontend. Test queries directly below or visit `/docs` for the interactive OpenAPI Swagger documentation.")
+    with gr.Row():
+        query_input = gr.Textbox(label="Query / Vibe / Title", placeholder="e.g. blade runner 2049 lonely replicant searching for soul in neon rain", lines=2)
+        mode_choice = gr.Radio(["Subconscious Vibe", "Exact Title"], label="Mode", value="Subconscious Vibe")
+    search_btn = gr.Button("Ignite Vector Search", variant="primary")
+    output_display = gr.Markdown(label="Recommended Projections")
+    search_btn.click(fn=gradio_search, inputs=[query_input, mode_choice], outputs=output_display)
+
+# Mount Gradio into FastAPI at /
+app = gr.mount_gradio_app(app, demo, path="/")
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 7860))
-    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=False)
+    uvicorn.run(app, host="0.0.0.0", port=port)
