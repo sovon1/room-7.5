@@ -1,0 +1,1613 @@
+/* ==========================================================================
+   HYPNAGOGIA — SURREALIST FEVER-DREAM THEME (WHITE BASE + GOSLING BACKDROP)
+   Full-Bleed Blade Runner 2049 Canvas + 35mm Celluloid Reel + KaTeX Tensor Deck
+   ========================================================================== */
+
+:root {
+  --bg-porcelain: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-glass: rgba(255, 255, 255, 0.82);
+  --border-ethereal: rgba(226, 232, 240, 0.95);
+  --text-obsidian: #09090b;
+  --text-muted: #475569;
+  --text-subtle: #94a3b8;
+  --accent-iris: #7c3aed;
+  --accent-cyan: #0284c7;
+  --accent-emerald: #059669;
+  --accent-rose: #e11d48;
+}
+
+/* ==========================================================================
+   BORDER BEAM COMPONENT SYSTEM (Magic UI / Libraries.dev Standard)
+   Animated Luminous Light Beam Tracing Container Perimeters
+   ========================================================================== */
+
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes borderBeamSpin {
+  0% { --beam-angle: 0deg; }
+  100% { --beam-angle: 360deg; }
+}
+
+.border-beam-host {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 6;
+}
+
+.border-beam-traveler {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg) at 50% 50%,
+    transparent 0deg,
+    transparent 285deg,
+    var(--beam-from, #7c3aed) 325deg,
+    var(--beam-to, #38bdf8) 350deg,
+    #ffffff 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderBeamSpin var(--beam-duration, 6s) linear infinite;
+}
+
+.hero-formula-banner,
+.live-reactive-deck,
+.engine-viewport,
+.surreal-console,
+.input-capsule,
+.surreal-card,
+.lightbox-card {
+  position: relative;
+}
+.surreal-universe {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: var(--text-obsidian);
+  position: relative;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: -0.015em;
+  padding-bottom: 6rem;
+}
+
+/* Chromatic Shockwave Triggered on Archetype Click */
+.chromatic-shockwave {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  animation: shockwavePulse 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shockwavePulse {
+  0% {
+    box-shadow: inset 0 0 0 0 rgba(168, 85, 247, 0.75);
+    background: rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    box-shadow: inset 0 0 120px 40px rgba(56, 189, 248, 0.4);
+    background: transparent;
+  }
+  100% {
+    box-shadow: inset 0 0 0 0 rgba(168, 85, 247, 0);
+    background: transparent;
+  }
+}
+
+/* ==========================================================================
+   FULL-BLEED CINEMATIC BACKDROP: RYAN GOSLING (OFFICER K // 2049)
+   Seamless High-Key Alabaster Integration
+   ========================================================================== */
+
+.cinematic-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.backdrop-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  filter: contrast(125%) saturate(130%) brightness(1.04);
+  transition: opacity 0.8s ease, filter 0.8s ease, transform 12s ease-out;
+  transform: scale(1.03);
+}
+
+.backdrop-film-grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 0);
+  background-size: 3px 3px;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.backdrop-white-veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 25%,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(248, 250, 252, 0.75) 55%,
+    rgba(248, 250, 252, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+.backdrop-chromatic-haze {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.08) 0%,
+    transparent 40%,
+    rgba(168, 85, 247, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* Atmospheric Dream Orbs & High-Frequency Fever Grids */
+.dream-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  animation: floatOrb 22s infinite alternate ease-in-out;
+}
+
+.dream-orb-1 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.35) 0%, rgba(216, 180, 254, 0.05) 70%);
+  top: -100px;
+  left: -80px;
+}
+
+.dream-orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(186, 230, 253, 0.05) 70%);
+  top: 30%;
+  right: -120px;
+  animation-duration: 28s;
+  animation-delay: -6s;
+}
+
+.dream-orb-3 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.22) 0%, rgba(254, 205, 211, 0.05) 70%);
+  bottom: 40px;
+  left: 20%;
+  animation-duration: 20s;
+  animation-delay: -12s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(45px, 35px) scale(1.06); }
+  100% { transform: translate(-35px, 50px) scale(0.96); }
+}
+
+.fever-grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   CENTRAL COMMAND CONTAINER
+   ========================================================================== */
+
+.surreal-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Editorial Brandmark Header */
+.surreal-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+/* Analog Film Catalog Mark */
+.film-catalog-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.meta-mark {
+  color: var(--text-obsidian);
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.meta-sep {
+  color: #cbd5e1;
+  font-size: 0.65rem;
+}
+
+.meta-solitude {
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.meta-hilbert {
+  color: #7c3aed;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+/* Deep Cinema Sans Monolithic Title */
+.cinema-monolith-title {
+  font-size: 5.6rem;
+  font-weight: 950;
+  line-height: 0.95;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #09090b;
+  margin: 0 0 1.25rem 0;
+  text-align: center;
+  text-shadow: 
+    0 1px 2px rgba(255, 255, 255, 0.95),
+    0 4px 24px rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  user-select: none;
+  transition: letter-spacing 0.4s ease;
+}
+
+.surreal-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 720px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.55;
+  font-weight: 450;
+  text-shadow: 0 1px 15px rgba(255, 255, 255, 0.9);
+}
+
+.hero-formula-banner {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  padding: 0.85rem 1.75rem;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(16px);
+  margin: 0 auto 1.5rem auto;
+}
+
+/* Backdrop Atmosphere Fader Controls */
+.backdrop-fader-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e2e8f0;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.fader-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.fader-pill {
+  border: 1px solid transparent;
+  background: #f1f5f9;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-obsidian);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fader-pill:hover {
+  background: #e2e8f0;
+}
+
+.fader-pill.active {
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+}
+
+/* ==========================================================================
+   35MM CELLULOID REEL (ORGANIC FILMSTRIP ARCHETYPES)
+   Zero AI-Slop Side Cards — Pure 35mm Negative Contact Strip
+   ========================================================================== */
+
+.filmstrip-ribbon {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 20px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filmstrip-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.spool-icon {
+  font-size: 1rem;
+}
+
+.film-frames-track {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+}
+
+.film-frame {
+  position: relative;
+  height: 105px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #0f172a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.film-frame:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.film-frame.frame-active {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--frame-accent, #38bdf8);
+  box-shadow: 
+    0 14px 32px rgba(15, 23, 42, 0.25),
+    0 0 20px rgba(56, 189, 248, 0.35);
+  z-index: 5;
+}
+
+.film-frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.film-frame:hover .film-frame-img,
+.film-frame.frame-active .film-frame-img {
+  transform: scale(1.1);
+}
+
+.sprocket-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5px 6px;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.top-sprockets {
+  top: 0;
+}
+
+.bottom-sprockets {
+  bottom: 0;
+}
+
+.sprocket {
+  width: 5px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1px;
+}
+
+.film-frame-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 40%, rgba(15, 23, 42, 0.85) 100%);
+  pointer-events: none;
+}
+
+.film-frame-label {
+  position: absolute;
+  bottom: 10px;
+  left: 6px;
+  right: 6px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+.frame-code {
+  font-size: 0.55rem;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--frame-accent, #38bdf8);
+}
+
+.frame-title {
+  font-size: 0.68rem;
+  font-weight: 750;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* ==========================================================================
+   LIVE REACTIVE TENSOR HUD
+   ========================================================================== */
+
+.live-reactive-deck {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(16px);
+}
+
+.deck-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.deck-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.deck-pulse-icon {
+  color: #a855f7;
+  font-size: 1.1rem;
+  animation: pulseDot 1.5s infinite;
+}
+
+.deck-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--text-obsidian);
+}
+
+.deck-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.deck-badge {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  color: #7c3aed;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.deck-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.deck-cell {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cell-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.cell-value-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.cell-num {
+  font-size: 1.45rem;
+  font-weight: 850;
+  color: var(--text-obsidian);
+  letter-spacing: -0.03em;
+  font-feature-settings: "tnum";
+}
+
+.cell-unit {
+  font-size: 0.7rem;
+  color: var(--text-subtle);
+  font-weight: 600;
+}
+
+.cell-bar-track {
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.cell-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.fill-cyan { background: #0284c7; }
+.fill-violet { background: #7c3aed; }
+.fill-rose { background: #e11d48; }
+.fill-emerald { background: #059669; }
+
+/* ==========================================================================
+   3D MACHINE LEARNING VECTOR SIMULATION HERO
+   ========================================================================== */
+
+.engine-viewport {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(20px);
+  margin-bottom: 2rem;
+}
+
+.engine-hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(248, 250, 252, 0.85);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.hud-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hud-label {
+  font-size: 0.65rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.hud-val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-obsidian);
+}
+
+.hud-online {
+  color: #059669;
+}
+
+.hud-pulsing {
+  color: #7c3aed;
+  animation: pulseDot 1s infinite;
+}
+
+.vector-canvas {
+  width: 100%;
+  height: 360px;
+  display: block;
+  cursor: grab;
+  background: radial-gradient(circle at center, rgba(248, 250, 252, 0.45) 0%, rgba(241, 245, 249, 0.85) 100%);
+}
+
+.vector-canvas:active {
+  cursor: grabbing;
+}
+
+.engine-foot {
+  padding: 0.65rem 1.25rem;
+  background: rgba(248, 250, 252, 0.9);
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-align: center;
+}
+
+/* ==========================================================================
+   MATHEMATICAL MACHINERY SHOWCASE (KATEX PROOFS)
+   ========================================================================== */
+
+.math-section {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(16px);
+}
+
+.math-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.math-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.math-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #0284c7);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.math-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-obsidian);
+  letter-spacing: -0.02em;
+}
+
+.math-tag {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.math-toggle-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-obsidian);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.math-toggle-btn:hover {
+  background: #e2e8f0;
+}
+
+.math-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.math-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.35rem 1.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+.math-card-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #7c3aed;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.math-render-area {
+  padding: 0.85rem 0.75rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.math-reactive-hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hud-chip {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  color: var(--text-obsidian);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.hud-chip strong {
+  color: #7c3aed;
+}
+
+.math-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   FLOATING SURREALIST SEARCH CONSOLE
+   ========================================================================== */
+
+.surreal-console {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(20px);
+}
+
+.mode-capsule {
+  display: inline-flex;
+  gap: 0.5rem;
+  background: #f1f5f9;
+  padding: 0.35rem;
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+}
+
+.capsule-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.capsule-btn.active {
+  background: #ffffff;
+  color: var(--text-obsidian);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.surreal-form {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.input-capsule {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lens-icon {
+  position: absolute;
+  left: 1.1rem;
+  font-size: 1.1rem;
+  color: var(--text-subtle);
+  pointer-events: none;
+}
+
+.input-capsule input {
+  width: 100%;
+  padding: 0.95rem 2.8rem 0.95rem 2.85rem;
+  border-radius: 14px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  color: var(--text-obsidian);
+  font-size: 0.95rem;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-capsule input:focus {
+  border-color: #7c3aed;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+.clear-btn {
+  position: absolute;
+  right: 1rem;
+  background: #e2e8f0;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   THINKING ORBS BUTTON (Replacing the standard button)
+   Bioluminescent Quantum Core Swirl with Dynamic Thinking States
+   ========================================================================== */
+
+.thinking-orbs-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 0.55rem 1.45rem 0.55rem 0.75rem;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text-obsidian);
+  cursor: pointer;
+  box-shadow: 
+    0 8px 24px rgba(124, 58, 237, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(16px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.thinking-orbs-trigger:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(168, 85, 247, 0.8);
+  box-shadow: 
+    0 14px 34px rgba(124, 58, 237, 0.22),
+    0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+.thinking-orbs-trigger:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.thinking-orbs-trigger:disabled {
+  cursor: wait;
+}
+
+/* The Glass Orb Chamber */
+.orbs-chamber {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #1e1b4b 0%, #09090b 100%);
+  overflow: hidden;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.8),
+    0 4px 14px rgba(124, 58, 237, 0.35);
+  flex-shrink: 0;
+}
+
+/* Cluster of Bioluminescent Plasma Orbs */
+.orbs-cluster {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(3.5px) contrast(140%);
+  animation: orbClusterRotate 8s linear infinite;
+}
+
+.thinking-orbs-trigger.is-thinking .orbs-cluster {
+  animation: orbClusterRotate 0.85s linear infinite;
+  filter: blur(2px) contrast(170%);
+}
+
+.plasma-orb {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.orb-1 {
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(circle, #a855f7 0%, rgba(168, 85, 247, 0) 70%);
+  top: 3px;
+  left: 5px;
+  animation: floatOrbA 3.5s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #38bdf8 0%, rgba(56, 189, 248, 0) 70%);
+  bottom: 4px;
+  right: 5px;
+  animation: floatOrbB 3s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, #f43f5e 0%, rgba(244, 63, 94, 0) 70%);
+  bottom: 4px;
+  left: 6px;
+  animation: floatOrbC 4s ease-in-out infinite alternate;
+}
+
+.orb-4 {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #fbbf24 0%, rgba(251, 191, 36, 0) 70%);
+  top: 6px;
+  right: 7px;
+  animation: floatOrbD 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes orbClusterRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes floatOrbA {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(5px, 7px) scale(1.2); }
+}
+
+@keyframes floatOrbB {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-6px, -5px) scale(0.9); }
+}
+
+@keyframes floatOrbC {
+  0% { transform: translate(0, 0) scale(1.1); }
+  100% { transform: translate(6px, -5px) scale(0.85); }
+}
+
+@keyframes floatOrbD {
+  0% { transform: translate(0, 0) scale(0.9); }
+  100% { transform: translate(-5px, 6px) scale(1.15); }
+}
+
+/* Glass Specular Glare over Chamber */
+.orbs-glass-lens {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.65) 0%, transparent 60%);
+  pointer-events: none;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+/* Pulsating Shockwave Ring when Thinking */
+.orbs-shockwave {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid #a855f7;
+  opacity: 0;
+  animation: shockwaveRipple 1.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes shockwaveRipple {
+  0% { transform: scale(0.8); opacity: 0.9; border-color: #38bdf8; }
+  100% { transform: scale(1.6); opacity: 0; border-color: #a855f7; }
+}
+
+/* Typography Inside Button */
+.orbs-caption-deck {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 0.15rem;
+}
+
+.orbs-caption-title {
+  font-size: 0.92rem;
+  font-weight: 850;
+  color: var(--text-obsidian);
+  letter-spacing: -0.01em;
+}
+
+.orbs-caption-meta {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #7c3aed;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.orbs-glyph-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #7c3aed;
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-left: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.thinking-orbs-trigger:hover .orbs-glyph-tag {
+  background: linear-gradient(135deg, #7c3aed, #0284c7);
+  color: #ffffff;
+  transform: rotate(15deg) scale(1.1);
+}
+
+.quantum-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(124, 58, 237, 0.3);
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+  animation: quantumSpin 0.7s linear infinite;
+}
+
+@keyframes quantumSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   FEED HEADER
+   ========================================================================== */
+
+.feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.feed-title-block {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.feed-glyph {
+  color: #7c3aed;
+  font-size: 1.3rem;
+}
+
+.feed-headline {
+  font-size: 1.45rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.2rem 0;
+  color: var(--text-obsidian);
+}
+
+.feed-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.reset-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-obsidian);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.reset-capsule:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* ==========================================================================
+   SURREALIST ALABASTER MOVIE CARDS
+   ========================================================================== */
+
+.surreal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.surreal-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(14px);
+}
+
+.surreal-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 25px 60px rgba(15, 23, 42, 0.12),
+    0 0 35px rgba(124, 58, 237, 0.18);
+  border-color: rgba(168, 85, 247, 0.6);
+}
+
+.card-prismatic-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7c3aed, #0284c7, #ec4899);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.surreal-card:hover .card-prismatic-border {
+  opacity: 1;
+}
+
+.poster-portal {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.portal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.surreal-card:hover .portal-image {
+  transform: scale(1.06);
+}
+
+.portal-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #ffffff;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.fallback-glyph {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.fallback-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.portal-top-bar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(15, 23, 42, 0.82);
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+}
+
+.star {
+  color: #eab308;
+}
+
+.resonance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(124, 58, 237, 0.88);
+  color: #ffffff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(124, 58, 237, 0.4);
+}
+
+.popular-badge {
+  background: rgba(2, 132, 199, 0.85);
+  color: #ffffff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+}
+
+.synapse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 6px #ffffff;
+  animation: pulseDot 1.5s infinite;
+}
+
+.portal-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(255, 255, 255, 0.95) 100%);
+  pointer-events: none;
+}
+
+.card-essence {
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-math-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: #7c3aed;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  width: fit-content;
+}
+
+.math-chip-divider {
+  color: #cbd5e1;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.55rem 0;
+  color: var(--text-obsidian);
+  line-height: 1.25;
+}
+
+.genre-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.ethereal-tag {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.card-synopsis {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.72rem;
+  color: var(--text-subtle);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.inspect-link {
+  color: #7c3aed;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.surreal-card:hover .inspect-link {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   LIGHTBOX MODAL FOR FILM EIGEN-INSPECTION
+   ========================================================================== */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.lightbox-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 760px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(15, 23, 42, 0.1);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-obsidian);
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(15, 23, 42, 0.2);
+}
+
+.lightbox-body {
+  display: flex;
+}
+
+.lightbox-poster {
+  width: 280px;
+  height: 420px;
+  object-fit: cover;
+}
+
+.lightbox-info {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.lightbox-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #7c3aed;
+  letter-spacing: 0.08em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.lightbox-info h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--text-obsidian);
+}
+
+.lightbox-stats {
+  display: flex;
+  gap: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.lightbox-match {
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.1);
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+}
+
+.lightbox-math-formula {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.lightbox-info p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .deck-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .film-frames-track {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .surreal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .math-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .surreal-title {
+    font-size: 2.8rem;
+  }
+  .film-frames-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .deck-grid {
+    grid-template-columns: 1fr;
+  }
+  .surreal-grid {
+    grid-template-columns: 1fr;
+  }
+  .lightbox-body {
+    flex-direction: column;
+  }
+  .lightbox-poster {
+    width: 100%;
+    height: 250px;
+  }
+}
